@@ -30,7 +30,7 @@ const char *MyFile = {"/MyFile.txt"};
 // временные файлы для работы внутри функций
 String TemporaryFile1;
 String TemporaryFile2;
-#include "private_stuff"
+#include "private_stuff.h"
 // функции для работы с файлами, чтения , открытия и записи
 void notFound(AsyncWebServerRequest *request)
 {

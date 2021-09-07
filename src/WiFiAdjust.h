@@ -30,63 +30,7 @@ const char *MyFile = {"/MyFile.txt"};
 // временные файлы для работы внутри функций
 String TemporaryFile1;
 String TemporaryFile2;
-
-// называю переменные
-const char *parametr[leng] = {
-    "HOUR", "MIN", "TEMP", "LEAK", "LIGHT",
-    "BOBBER1", "BOBBER2", "BOBBER3", "BOBBER4",
-    "SWITCH1", "SWITCH2", "SWITCH3", "SWITCH4",
-    "OBTACLE1", "OBTACLE2",
-    "STEP1_STATE", "STEP2_STATE", "STEP3_STATE", "STEP4_STATE",
-    "SOLI", "LASER1", "LASER2",
-    "VALVE1", "VALVE2", "VALVE3", "VALVE4", "VALVE5", "VALVE6",
-    "PUMP1", "PUMP2", "PUMP3", "PUMP4", "BIG_PUMP",
-    "DEVICE1", "DEVICE2", "DEVICE3", "DEVICE4", "DEVICE5", "DEVICE6", "DEVICE7", "DEVICE8",
-    "DRIVE1", "DRIVE2", "DRIVE3", "DRIVE4", "LED",
-    "STEP3_hour_on", "STEP3_min_on", "STEP3_hour_off", "STEP3_min_off",
-    "STEP4_hour_on", "STEP4_min_on", "STEP4_hour_off", "STEP4_min_off",
-    "SOLI_hour_on", "SOLI_min_on", "SOLI_hour_off", "SOLI_min_off",
-    "LASER1_hour_on", "LASER1_min_on", "LASER1_hour_off", "LASER1_min_off",
-    "LASER2_hour_on", "LASER2_min_on", "LASER2_hour_off", "LASER2_min_off",
-    "VALVE1_hour_on", "VALVE1_min_on", "VALVE1_hour_off", "VALVE1_min_off",
-    "VALVE2_hour_on", "VALVE2_min_on", "VALVE2_hour_off", "VALVE2_min_off",
-    "VALVE3_hour_on", "VALVE3_min_on", "VALVE3_hour_off", "VALVE3_min_off",
-    "VALVE4_hour_on", "VALVE4_min_on", "VALVE4_hour_off", "VALVE4_min_off",
-    "VALVE5_hour_on", "VALVE5_min_on", "VALVE5_hour_off", "VALVE5_min_off",
-    "VALVE6_hour_on", "VALVE6_min_on", "VALVE6_hour_off", "VALVE6_min_off",
-    "PUMP1_hour_on", "PUMP1_min_on", "PUMP1_hour_off", "PUMP1_min_off",
-    "PUMP2_hour_on", "PUMP2_min_on", "PUMP2_hour_off", "PUMP2_min_off",
-    "PUMP3_hour_on", "PUMP3_min_on", "PUMP3_hour_off", "PUMP3_min_off",
-    "PUMP4_hour_on", "PUMP4_min_on", "PUMP4_hour_off", "PUMP4_min_off",
-    "BIG_PUMP_hour_on", "BIG_PUMP_min_on", "BIG_PUMP_hour_off", "BIG_PUMP_min_off",
-    "DEVICE1_hour_on", "DEVICE1_min_on", "DEVICE1_hour_off", "DEVICE1_min_off",
-    "DEVICE2_hour_on", "DEVICE2_min_on", "DEVICE2_hour_off", "DEVICE2_min_off",
-    "DEVICE3_hour_on", "DEVICE3_min_on", "DEVICE3_hour_off", "DEVICE3_min_off",
-    "DEVICE4_hour_on", "DEVICE4_min_on", "DEVICE4_hour_off", "DEVICE4_min_off",
-    "DEVICE5_hour_on", "DEVICE5_min_on", "DEVICE5_hour_off", "DEVICE5_min_off",
-    "DEVICE6_hour_on", "DEVICE6_min_on", "DEVICE6_hour_off", "DEVICE6_min_off",
-    "DEVICE7_hour_on", "DEVICE7_min_on", "DEVICE7_hour_off", "DEVICE7_min_off",
-    "DEVICE8_hour_on", "DEVICE8_min_on", "DEVICE8_hour_off", "DEVICE8_min_off",
-    "LED_hour_on", "LED_min_on", "LED_hour_off", "LED_min_off",
-    "DRIVE1_hour_on", "DRIVE1_min_on", "DRIVE1_hour_off", "DRIVE1_min_off",
-    "DRIVE2_hour_on", "DRIVE2_min_on", "DRIVE2_hour_off", "DRIVE2_min_off",
-    "DRIVE3_hour_on", "DRIVE3_min_on", "DRIVE3_hour_off", "DRIVE3_min_off",
-    "DRIVE4_hour_on", "DRIVE4_min_on", "DRIVE4_hour_off", "DRIVE4_min_off",
-    "STEP1_hour_on", "STEP1_min_on", "STEP1_hour_off", "STEP1_min_off",
-    "STEP2_hour_on", "STEP2_min_on", "STEP2_hour_off", "STEP2_min_off",
-
-    "StartMonthIrrigation", "StartDayIrrigation", "StartHourIrrigation", "StartMinIrrigation",
-    "IrrigationCycle", "IrrigationMix", "IrrigationDuration",
-    "TankFlagIrrigation", "CycleDayIrrigation", "CycleHourIrrigation",
-
-    "StartMonthWaterring", "StartDayWaterring", "StartHourWaterring", "StartMinWaterring",
-    "WateringCycle", "WateringMix", "WateringDuration",
-    "TankFlagWatering", "CycleDayWatering", "CycleHourWatering",
-
-    "led_pattern_hour_On", "led_pattern_min_On", "led_pattern_hour_Off", "led_pattern_min_Off",
-
-    "STEP1_value", "STEP2_value", "STEP3_value", "STEP4_value", "key"};
-
+#include "private_stuff"
 // функции для работы с файлами, чтения , открытия и записи
 void notFound(AsyncWebServerRequest *request)
 {

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>EspServer</title>
+  </head>
+  <body>
+    <div class="cards">
+      <div class="cards1">
+        <div class="card">
+          <h3>Sensor readings</h3>
+          <p>
+            Current time <span id="HOUR"> %HOUR%</span> :
+            <span id="MIN">%MIN%</span>
+          </p>
+          <p>Temperature <span id="TEMP"> %TEMP% &#xb0;C</span></p>
+          <p>Water leaks <span id="LEAK"> %LEAK% </span></p>
+          <p>Light sensor <span id="LIGHT">%LIGHT% </span></p>
+          <br />
+          <p>Bobber_Tank_min_1 <span id="BOBBER1"> %BOBBER1% </span></p>
+          <p>Bobber_Tank_max_2 <span id="BOBBER2">%BOBBER2% </span></p>
+          <p>Bobber_3 <span id="BOBBER3">%BOBBER3% </span></p>
+          <p>Bobber_4 <span id="BOBBER4">%BOBBER4% </span></p>
+          <br />
+
+          <p>Limit switch_1 <span id="SWITCH1"> %SWITCH1% </span></p>
+          <p>Limit switch_2 <span id="SWITCH2"> %SWITCH2% </span></p>
+          <p>Limit switch_3 <span id="SWITCH3">%SWITCH3% </span></p>
+          <p>Limit switch_4 <span id="SWITCH4">%SWITCH4%</span></p>
+          <br />
+          <p>Obtacle1 <span id="OBTACLE1"> %OBTACLE1% </span></p>
+          <p>Obtacle2 <span id="OBTACLE2">%OBTACLE2% </span></p>
+        </div>
+
+        <div class="card card1">
+          <h3>light outline</h3>
+          <p>Led control <span id="STEP2_STATE"> %STEP2_STATE% </span></p>
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>
+              distance <span id="STEP2_value">%STEP2_value%</span>
+              <input type="text" name="STEP2_value" />
+            </p>
+            <p>
+              time on<span id="led_pattern_hour_On"> %led_pattern_hour_On% </span>:<span
+                id="led_pattern_min_On"
+              >
+                %led_pattern_min_On%
+              </span>
+              <input type="time" name="led_pattern_hour_On" />
+            </p>
+
+            <p>
+              time off<span id="led_pattern_hour_Off"> %led_pattern_hour_Off% </span>:<span
+                id="led_pattern_min_Off"
+              >
+                %led_pattern_min_Off%
+              </span>
+              <input type="time" name="led_pattern_hour_Off" />
+            </p>
+
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow: none">
+        <div class="cards">
+          <div class="card">
+            <h3>Irrigation circuit</h3>
+            <form id="red-form" action="/get" target="hidden-form">
+              <p>
+                Start at
+                <span id="StartDayIrrigation"> %StartDayIrrigation%</span>.<span
+                  id="StartMonthIrrigation"
+                  >%StartMonthIrrigation%
+                </span>
+                &nbsp;/&nbsp;
+                <span id="StartHourIrrigation"> %StartHourIrrigation%</span> :
+                <span id="StartMinIrrigation">%StartMinIrrigation% </span>
+              </p>
+              <p><input type="datetime-local" name="StartMonthIrrigation" /></p>
+              <p>
+                Cycle duration
+                <span id="IrrigationCycle">%IrrigationCycle%</span>
+                <input type="text" name="IrrigationCycle" /> hour
+              </p>
+              <p>
+                Angle of rotation <span id="STEP1_value">%STEP1_value%</span>
+                <input type="text" name="STEP1_value" />
+              </p>
+              <p>
+                Irrigation mix
+                <span id="IrrigationMix"> %IrrigationMix% </span>
+                <input type="text" name="IrrigationMix" /> min
+              </p>
+              <p>
+                Duration of irrigation<span id="IrrigationDuration">
+                  %IrrigationDuration%
+                </span>
+                <input type="text" name="IrrigationDuration" /> min
+              </p>
+              <p>
+                <input type="submit" value="Submit" onclick="submitMessage()" />
+              </p>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>Watering circuit</h3>
+            <form id="red-form" action="/get" target="hidden-form">
+              <p>
+                Start at
+                <span id="StartDayWaterring"> %StartDayWaterring%</span>.<span
+                  id="StartMonthWaterring"
+                  >%StartMonthWaterring%
+                </span>
+                &nbsp;/&nbsp;
+                <span id="StartHourWaterring"> %StartHourWaterring%</span> :
+                <span id="StartMinWaterring">%StartMinWaterring% </span>
+              </p>
+              <p><input type="datetime-local" name="StartMonthWaterring" /></p>
+              <p>
+                Cycle duration <span id="WateringCycle">%WateringCycle%</span>
+                <input type="text" name="WateringCycle" /> hour
+              </p>
+              <p>
+                Angle of rotation<span id="STEP1_value">%STEP1_value%</span>
+                <input type="text" name="STEP1_value" />
+              </p>
+
+              <p>
+                Watering mix<span id="WateringMix"> %WateringMix% </span>
+                <input type="text" name="WateringMix" /> min
+              </p>
+              <p>
+                Watering duration<span id="WateringDuration">
+                  %WateringDuration%
+                </span>
+                <input type="text" name="WateringDuration" /> min
+              </p>
+              <p>
+                <input type="submit" value="Submit" onclick="submitMessage()" />
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow: none">
+        <div class="cards">
+          <div class="card">
+            <form id="red-form" action="/get" target="hidden-form">
+              <p>STEP1 state <span id="STEP1_STATE"> %STEP1_STATE% </span></p>
+              <p>
+                corner <span id="STEP1_value">%STEP1_value% </span>
+                <input type="text" name="STEP1_value" />
+              </p>
+              <p>
+                time <span id="STEP1_hour_on">%STEP1_hour_on% </span> :
+                <span id="STEP1_min_on"> %STEP1_min_on% </span>
+                <input type="time" name="STEP1_hour_on" />
+              </p>
+              <p>
+                time <span id="STEP1_hour_off">%STEP1_hour_off%</span> :
+                <span id="STEP1_min_off">%STEP1_min_off% </span
+                ><input type="time" name="STEP1_hour_off" />
+              </p>
+              <p>
+                <input type="submit" value="Submit" onclick="submitMessage()" />
+              </p>
+            </form>
+          </div>
+          <div class="card">
+            <form id="red-form" action="/get" target="hidden-form">
+              <p>STEP2 state <span id="STEP2_STATE"> %STEP2_STATE% </span></p>
+              <p>
+                corner <span id="STEP2_value">%STEP2_value%</span>
+                <input type="text" name="STEP2_value" />
+              </p>
+              <p>
+                time <span id="STEP2_hour_on"> %STEP2_hour_on% </span> :
+                <span id="STEP2_min_on"> %STEP2_min_on% </span
+                ><input type="time" name="STEP2_hour_on" />
+              </p>
+              <p>
+                time <span id="STEP2_hour_off">%STEP2_hour_off% </span> :
+                <span id="STEP2_min_off">%STEP2_min_off%</span>
+                <input type="time" name="STEP2_hour_off" />
+              </p>
+              <p>
+                <input type="submit" value="Submit" onclick="submitMessage()" />
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow: none">
+        <div class="cards">
+          <div class="card">
+            <form id="red-form" action="/get" target="hidden-form">
+              <p>STEP3 state <span id="STEP3_STATE"> %STEP3_STATE% </span></p>
+              <p>
+                corner <span id="STEP3_value">%STEP3_value% </span>
+                <input type="text" name="STEP3_value" />
+              </p>
+              <p>
+                time <span id="STEP3_hour_on">%STEP3_hour_on% </span> :
+                <span id="STEP3_min_on">%STEP3_min_on%</span>
+                <input type="time" name="STEP3_hour_on" />
+              </p>
+              <p>
+                time <span id="STEP3_hour_off">%STEP3_hour_off%</span> :
+                <span id="STEP3_min_off">%STEP3_min_off% </span
+                ><input type="time" name="STEP3_hour_off" />
+              </p>
+              <p>
+                <input type="submit" value="Submit" onclick="submitMessage()" />
+              </p>
+            </form>
+          </div>
+          <div class="card">
+            <form id="red-form" action="/get" target="hidden-form">
+              <p>STEP4 state <span id="STEP4_STATE"> %STEP4_STATE% </span></p>
+              <p>
+                corner <span id="STEP4_value">%STEP4_value%</span>
+                <input type="text" name="STEP4_value" />
+              </p>
+              <p>
+                time <span id="STEP4_hour_on"> %STEP4_hour_on% </span> :
+                <span id="STEP4_min_on"> %STEP4_min_on% </span
+                ><input type="time" name="STEP4_hour_on" />
+              </p>
+              <p>
+                time <span id="STEP4_hour_off">%STEP4_hour_off% </span> :
+                <span id="STEP4_min_off">%STEP4_min_off%</span>
+                <input type="time" name="STEP4_hour_off" />
+              </p>
+              <p>
+                <input type="submit" value="Submit" onclick="submitMessage()" />
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="cards">
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Solinoid state <span id="SOLI"> %SOLI% </span></p>
+            <p>
+              time on <span id="SOLI_hour_on">%SOLI_hour_on%</span> :<span
+                id="SOLI_min_on"
+                >%SOLI_min_on%</span
+              >
+              <input type="time" name="SOLI_hour_on" />
+            </p>
+            <p>
+              time off <span id="SOLI_hour_off">%SOLI_hour_off%</span> :
+              <span id="SOLI_min_off">%SOLI_min_off%</span>
+              <input type="time" name="SOLI_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Laser 1 state <span id="LASER1"> %LASER1%</span></p>
+            <p>
+              time on <span id="LASER1_hour_on">%LASER1_hour_on%</span> :
+              <span id="LASER1_min_on">%LASER1_min_on%</span>
+              <input type="time" name="LASER1_hour_on" />
+            </p>
+
+            <p>
+              time off <span id="LASER1_hour_off">%LASER1_hour_off% </span>:
+              <span id="LASER1_min_off">%LASER1_min_off%</span>
+              <input type="time" name="LASER1_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Laser 2 state <span id="LASER2">%LASER2% </span></p>
+            <p>
+              time on<span id="LASER2_hour_on">%LASER2_hour_on%</span> :<span
+                id="LASER2_min_on"
+                >%LASER2_min_on%
+              </span>
+              <input type="time" name="LASER2_hour_on" />
+            </p>
+
+            <p>
+              time off
+              <span id="LASER2_hour_off">%LASER2_hour_off%</span> :<span
+                id="LASER2_min_off"
+                >%LASER2_min_off%</span
+              >
+              <input type="time" name="LASER2_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Valve before tank <span id="VALVE1">%VALVE1% </span></p>
+            <p>
+              time on <span id="VALVE1_hour_on">%VALVE1_hour_on%</span> :<span
+                id="VALVE1_min_on"
+                >%VALVE1_min_on%</span
+              >
+              <input type="time" name="VALVE1_hour_on" />
+            </p>
+
+            <p>
+              time off <span id="VALVE1_hour_off">%VALVE1_hour_off%</span> :
+              <span id="VALVE1_min_off">%VALVE1_min_off%</span>
+              <input type="time" name="VALVE1_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Valve for irrigation <span id="VALVE2"> %VALVE2% </span></p>
+            <p>
+              time on<span id="VALVE2_hour_on">%VALVE2_hour_on% </span> :
+              <span id="VALVE2_min_on">%VALVE2_min_on% </span
+              ><input type="time" name="VALVE2_hour_on" />
+            </p>
+
+            <p>
+              time off <span id="VALVE2_hour_off">%VALVE2_hour_off% </span>:
+              <span id="VALVE2_min_off">%VALVE2_min_off%</span>
+              <input type="time" name="VALVE2_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Valve for watering <span id="VALVE3">%VALVE3%</span></p>
+            <p>
+              time on <span id="VALVE3_hour_on">%VALVE3_hour_on%</span> :
+              <span id="VALVE3_min_on">%VALVE3_min_on% </span
+              ><input type="time" name="VALVE3_hour_on" />
+            </p>
+
+            <p>
+              time off<span id="VALVE3_hour_off"> %VALVE3_hour_off% </span>:
+              <span id="VALVE3_min_off">%VALVE3_min_off%</span>
+              <input type="time" name="VALVE3_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>VALVE4 state <span id="VALVE4"> %VALVE4% </span></p>
+            <p>
+              time on <span id="VALVE4_hour_on">%VALVE4_hour_on% </span>:
+              <span id="VALVE4_min_on">%VALVE4_min_on%</span>
+              <input type="time" name="VALVE4_hour_on" />
+            </p>
+
+            <p>
+              time off <span id="VALVE4_hour_off">%VALVE4_hour_off%</span> :
+              <span id="VALVE4_min_off">%VALVE4_min_off%</span>
+              <input type="time" name="VALVE4_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>VALVE5 state <span id="VALVE5">%VALVE5% </span></p>
+            <p>
+              time on <span id="VALVE4_hour_off"></span>%VALVE5_hour_on% :<span
+                id="VALVE4_hour_off"
+              ></span>
+              %VALVE5_min_on% <input type="time" name="VALVE5_hour_on" />
+            </p>
+            <p>
+              time off <span id="VALVE4_hour_off"></span>%VALVE5_hour_off% :
+              <span id="VALVE4_hour_off"></span>%VALVE5_min_off%
+              <input type="time" name="VALVE5_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>VALVE6 state <span id="VALVE6"> %VALVE6% </span></p>
+            <p>
+              time on <span id="VALVE6_hour_on">%VALVE6_hour_on% </span>:<span
+                id="VALVE6_min_on"
+              >
+                %VALVE6_min_on% </span
+              ><input type="time" name="VALVE6_hour_on" />
+            </p>
+            <p>
+              time off
+              <span id="VALVE6_hour_off">%VALVE6_hour_off% </span>:<span
+                id="VALVE6_min_off"
+              >
+                %VALVE6_min_off% </span
+              ><input type="time" name="VALVE6_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Pump before tank <span id="PUMP1">%PUMP1% </span></p>
+            <p>
+              time on <span id="PUMP1_hour_on">%PUMP1_hour_on% </span>:<span
+                id="PUMP1_min_on"
+                >%PUMP1_min_on%
+              </span>
+              <input type="time" name="PUMP1_hour_on" />
+            </p>
+            <p>
+              time off<span id="PUMP1_hour_off"> %PUMP1_hour_off%</span> :<span
+                id="PUMP1_min_off"
+              >
+                %PUMP1_min_off%</span
+              >
+              <input type="time" name="PUMP1_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Mixer<span id="PUMP2"> %PUMP2% </span></p>
+            <p>
+              time on <span id="PUMP2_hour_on">%PUMP2_hour_on%</span> :
+              <span id="PUMP2_min_on">%PUMP2_min_on% </span
+              ><input type="time" name="PUMP2_hour_on" />
+            </p>
+            <p>
+              time off<span id="PUMP2_hour_off"> %PUMP2_hour_off%</span> :<span
+                id="PUMP2_min_off"
+                >%PUMP2_min_off%</span
+              >
+              <input type="time" name="PUMP2_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>
+              Pump for irrigation and watering<span id="PUMP3"> %PUMP3% </span>
+            </p>
+            <p>
+              time on <span id="PUMP3_hour_on">%PUMP3_hour_on% </span>:<span
+                id="PUMP3_min_on"
+              >
+                %PUMP3_min_on%</span
+              >
+              <input type="time" name="PUMP3_hour_on" />
+            </p>
+            <p>
+              time off<span id="PUMP3_hour_off"> %PUMP3_hour_off% </span>:<span
+                id="PUMP3_min_off"
+              >
+                %PUMP3_min_off%</span
+              >
+              <input type="time" name="PUMP3_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>PUMP4 state <span id="PUMP4"> %PUMP4% </span></p>
+            <p>
+              time on <span id="PUMP4_hour_on">%PUMP4_hour_on% </span>:<span
+                id="PUMP4_min_on"
+              >
+                %PUMP4_min_on%</span
+              >
+              <input type="time" name="PUMP4_hour_on" />
+            </p>
+            <p>
+              time off<span id="PUMP4_hour_off">%PUMP4_hour_off% </span> :<span
+                id="PUMP4_min_off"
+              >
+                %PUMP4_min_off% </span
+              ><input type="time" name="PUMP4_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE1 state <span id="DEVICE1"> %DEVICE1% </span></p>
+            <p>
+              time on <span id="DEVICE1_hour_on">%DEVICE1_hour_on% </span>:<span
+                id="DEVICE1_min_on"
+                >%DEVICE1_min_on%</span
+              >
+              <input type="time" name="DEVICE1_hour_on" />
+            </p>
+            <p>
+              time off<span id="DEVICE1_hour_off"> %DEVICE1_hour_off% </span
+              >:<span id="DEVICE1_min_off"> %DEVICE1_min_off%</span>
+              <input type="time" name="DEVICE1_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE2 state <span id="DEVICE2">%DEVICE2% </span></p>
+            <p>
+              time on <span id="DEVICE2_hour_on">%DEVICE2_hour_on% </span>:<span
+                id="DEVICE2_min_on"
+                >%DEVICE2_min_on%
+              </span>
+              <input type="time" name="DEVICE2_hour_on" />
+            </p>
+            <p>
+              time off<span id="DEVICE2_hour_off"> %DEVICE2_hour_off%</span>
+              :<span id="DEVICE2_min_off">%DEVICE2_min_off%</span>
+              <input type="time" name="DEVICE2_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE3 state <span id="DEVICE3"> %DEVICE3% </span></p>
+            <p>
+              time on <span id="DEVICE3_hour_on">%DEVICE3_hour_on% </span>:<span
+                id="DEVICE3_min_on"
+              >
+                %DEVICE3_min_on% </span
+              ><input type="time" name="DEVICE3_hour_on" />
+            </p>
+            <p>
+              time off
+              <span id="DEVICE3_hour_off">%DEVICE3_hour_off% </span>:<span
+                id="DEVICE3_min_off"
+                >%DEVICE3_min_off%
+              </span>
+              <input type="time" name="DEVICE3_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE4 state <span id="DEVICE4"> %DEVICE4% </span></p>
+            <p>
+              time on <span id="DEVICE4_hour_on">%DEVICE4_hour_on% </span>:
+              <span id="DEVICE4_min_on">%DEVICE4_min_on% </span
+              ><input type="time" name="DEVICE4_hour_on" />
+            </p>
+            <p>
+              time off<span id="DEVICE4_hour_off"> %DEVICE4_hour_off% </span>:
+              <span id="DEVICE4_min_off">%DEVICE4_min_off% </span
+              ><input type="time" name="DEVICE4_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE5 state <span id="DEVICE5"> %DEVICE5% </span></p>
+            <p>
+              time on <span id="DEVICE5_hour_on">%DEVICE5_hour_on% </span>:
+              <span id="DEVICE5_min_on">%DEVICE5_min_on% </span
+              ><input type="time" name="DEVICE5_hour_on" />
+            </p>
+            <p>
+              time off<span id="DEVICE5_hour_off"> %DEVICE5_hour_off% </span>:
+              <span id="DEVICE5_min_off">%DEVICE5_min_off%</span>
+              <input type="time" name="DEVICE5_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE6 state <span id="DEVICE6"> %DEVICE6% </span></p>
+            <p>
+              time on<span id="DEVICE6_hour_on"> %DEVICE6_hour_on% </span>:<span
+                id="DEVICE6_min_on"
+              >
+                %DEVICE6_min_on%</span
+              >
+              <input type="time" name="DEVICE6_hour_on" />
+            </p>
+            <p>
+              time off <span id="DEVICE6_hour_off">%DEVICE6_hour_off% </span>:
+              <span id="DEVICE6_min_off">%DEVICE6_min_off%</span>
+              <input type="time" name="DEVICE6_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE7 state <span id="DEVICE7"> %DEVICE7% </span></p>
+            <p>
+              time on <span id="DEVICE7_hour_on">%DEVICE7_hour_on% </span>:<span
+                id="DEVICE7_min_on"
+              >
+                %DEVICE7_min_on% </span
+              ><input type="time" name="DEVICE7_hour_on" />
+            </p>
+            <p>
+              time off <span id="DEVICE7_hour_off">%DEVICE7_hour_off% </span>:
+              <span id="DEVICE7_min_off">%DEVICE7_min_off%</span>
+              <input type="time" name="DEVICE7_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DEVICE8 state <span id="DEVICE8"> %DEVICE8% </span></p>
+            <p>
+              time on <span id="DEVICE8_hour_on">%DEVICE8_hour_on% </span>:
+              <span id="DEVICE8_min_on">%DEVICE8_min_on% </span
+              ><input type="time" name="DEVICE8_hour_on" />
+            </p>
+            <p>
+              time off
+              <span id="DEVICE8_hour_off">%DEVICE8_hour_off% </span>:<span
+                id="DEVICE8_min_off"
+                >%DEVICE8_min_off%
+              </span>
+              <input type="time" name="DEVICE8_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DRIVE1 state <span id="DRIVE1"> %DRIVE1% </span></p>
+            <p>
+              time on<span id="DRIVE1_hour_on"> %DRIVE1_hour_on%</span> :<span
+                id="DRIVE1_min_on"
+              >
+                %DRIVE1_min_on% </span
+              ><input type="time" name="DRIVE1_hour_on" />
+            </p>
+            <p>
+              time off
+              <span id="DRIVE1_hour_off">%DRIVE1_hour_off%</span> :<span
+                id="DRIVE1_min_off"
+                >%DRIVE1_min_off%</span
+              >
+              <input type="time" name="DRIVE1_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DRIVE2 state <span id="DRIVE2"> %DRIVE2% </span></p>
+            <p>
+              time on<span id="DRIVE2_hour_on"> %DRIVE2_hour_on% </span>:
+              <span id="DRIVE2_min_on">%DRIVE2_min_on% </span
+              ><input type="time" name="DRIVE2_hour_on" />
+            </p>
+            <p>
+              time off
+              <span id="DRIVE2_hour_off">%DRIVE2_hour_off% </span>:<span
+                id="DRIVE2_min_off"
+                >%DRIVE2_min_off%
+              </span>
+              <input type="time" name="DRIVE2_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DRIVE3 state <span id="DRIVE3"> %DRIVE3% </span></p>
+            <p>
+              time on <span id="DRIVE3_hour_on">%DRIVE3_hour_on%</span> :<span
+                id="DRIVE3_min_on"
+              >
+                %DRIVE3_min_on%</span
+              >
+              <input type="time" name="DRIVE3_hour_on" />
+            </p>
+            <p>
+              time off<span id="DRIVE3_hour_off"> %DRIVE3_hour_off%</span> :
+              <span id="DRIVE3_min_off">%DRIVE3_min_off%</span>
+              <input type="time" name="DRIVE3_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>DRIVE4 state <span id="DRIVE4"> %DRIVE4% </span></p>
+            <p>
+              time on <span id="DRIVE4_hour_on">%DRIVE4_hour_on%</span> :
+              <span id="DRIVE4_min_on">%DRIVE4_min_on% </span
+              ><input type="time" name="DRIVE4_hour_on" />
+            </p>
+            <p>
+              time off <span id="DRIVE4_hour_off">%DRIVE4_hour_off%</span> :
+              <span id="DRIVE4_min_off">%DRIVE4_min_off%</span>
+              <input type="time" name="DRIVE4_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+        <div class="card">
+          <form id="red-form" action="/get" target="hidden-form">
+            <p>Led state <span id="LED"> %LED% </span></p>
+            <p>
+              time on <span id="LED_hour_on">%LED_hour_on%</span> :<span
+                id="LED_min_on"
+                >%LED_min_on%</span
+              >
+              <input type="time" name="LED_hour_on" />
+            </p>
+            <p>
+              time off <span id="LED_hour_off">%LED_hour_off%</span> :
+              <span id="LED_min_off">%LED_min_off%</span>
+              <input type="time" name="LED_hour_off" />
+            </p>
+            <p>
+              <input type="submit" value="Submit" onclick="submitMessage()" />
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <iframe style="display: none" name="hidden-form"></iframe>
+    <script src="script.js"></script>
+  </body>
+</html>

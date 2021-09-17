@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <SPI.h>
 #include <Wire.h>
 
 // если произошло событие на сайте  Internet_flag будет равен 1
@@ -244,7 +243,6 @@ void loop()
     // сохраняем данные
     //writeFile(LittleFS, MyFile, GeneralString);
     writeFile("datalog.txt", GeneralString);
-    writeFile("AllDataLog.txt", GeneralString, 1);
     // отправляем данные меге
     byte bval;
     bval = 255; // send key-start

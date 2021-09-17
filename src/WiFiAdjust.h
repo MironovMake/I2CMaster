@@ -1,8 +1,11 @@
 // подключени библиотек
 #include <SD.h>
+#include <SPI.h>
+
 int chipSelect = 4;
 bool removeFlag;
 File myFile;
+File myFile2;
 #if defined(ESP8266)
 #include <ESP8266WiFi.h> //https://github.com/esp8266/Arduino
 #else
@@ -50,7 +53,7 @@ String readFile(String ThisFile)
     myFile.close();
     return fileContent;
 }
-
+int maxSession = 0;
 void writeFile(String FileName, String fileContent)
 {
     if (SD.exists(FileName))
@@ -60,6 +63,17 @@ void writeFile(String FileName, String fileContent)
     // if the file is available, write to it:
     myFile.println(fileContent);
     myFile.close();
+
+    maxSession++;
+    if (maxSession == 1500)
+    {
+        SD.remove("test2.txt");
+        maxSession = 0;
+    }
+    myFile2 = SD.open("test2.txt", FILE_WRITE);
+      // if the file is available, write to it:
+    myFile2.println(fileContent);
+    myFile2.close();
 }
 
 void writeFile(String FileName, String fileContent, bool rem)
@@ -206,6 +220,7 @@ void WiFiSetup()
     //SD.remove("datalog.txt");
 
     initSDCard();
+
     Serial.println("I going to gheck data");
     // writeFile(LittleFS, MyFile, GeneralString);
 
